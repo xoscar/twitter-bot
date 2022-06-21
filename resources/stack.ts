@@ -1,11 +1,16 @@
 import {Stack, StackProps} from 'aws-cdk-lib';
 import {Construct} from 'constructs';
-import Microservice from './microservice';
+import AppFunctions from './functions';
+import AppEvents from './events';
+import {TConfig} from '../src/types/common.types';
 
-export class AwsMicroservicesStack extends Stack {
-  constructor(scope: Construct, id: string, props?: StackProps) {
+class AppStack extends Stack {
+  constructor(scope: Construct, id: string, {postList, api}: TConfig, props?: StackProps) {
     super(scope, id, props);
 
-    const microservices = new Microservice(this, 'Microservices');
+    const appFunctions = new AppFunctions(this, 'AppFunctions', {api});
+    new AppEvents(this, 'AppEvents', {twitterCronJobFunction: appFunctions.twitterCronJob, postList});
   }
 }
+
+export default AppStack;
