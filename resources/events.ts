@@ -27,7 +27,9 @@ class AppEvents extends Construct {
       eventRule.addTarget(
         new LambdaFunction(twitterCronJobFunction, {
           event: RuleTargetInput.fromObject({
-            text,
+            detail: {
+              text,
+            },
           }),
         })
       );

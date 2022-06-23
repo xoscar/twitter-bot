@@ -1,16 +1,19 @@
 {
   "postList": [
     {
-      "url": "",
-      "title": "",
+      "text": "Hello world!",
       "cron": "rate(1 hour)"
     }
   ],
   "api": {
     "twitter": {
-      "url": "https://api.twitter.com/2/",
+      "url": "https://api.twitter.com/2",
       "credentials": {
-        "bearerToken": ""
+        "bearerToken": "",
+        "apiKey": "",
+        "apiSecret": "",
+        "oauthToken": "",
+        "oauthTokenSecret": ""
       }
     }
   }
